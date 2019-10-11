@@ -85,9 +85,9 @@ author:
   bio              : "Computer Engineering Ph.D. student at U.C. Santa Cruz, researching computer architecture, operating systems, and storage systems with a focus on storage accelerators"
   location         : "San Jose, CA"
   employer         :
-  pubmed           : ""
-  googlescholar    : ""
-  email            : "pcwilcox at ucsc dot edu"
+  pubmed           :
+  googlescholar    :
+  email            : "pcwilcox@ucsc.edu"
   researchgate     :  # example: "https://www.researchgate.net/profile/yourprofile"
   uri              :
   bitbucket        :
@@ -102,8 +102,8 @@ author:
   instagram        :
   impactstory      : #"https://profiles.impactstory.org/u/xxxx-xxxx-xxxx-xxxx"
   lastfm           :
-  linkedin         : "https://www.linkedin.com/in/pcwilcox/"
-  orcid            : ""
+  linkedin         : "pcwilcox"
+  orcid            :
   pinterest        :
   soundcloud       :
   stackoverflow    : # http://stackoverflow.com/users/123456/username
