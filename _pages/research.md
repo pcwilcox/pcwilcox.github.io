@@ -3,8 +3,6 @@ permalink: /research/
 title: "Research"
 excerpt: "Research"
 author_profile: true
-redirect_from: 
-  - /research.html
 ---
 
 My research interests are computer architecture, operating systems, and storage systems, with a focus on data center
