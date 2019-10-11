@@ -1,3 +1,4 @@
+---
 permalink: /other/
 title: "Other"
 excerpt: "Other info"
