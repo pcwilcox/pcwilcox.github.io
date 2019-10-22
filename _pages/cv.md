@@ -8,6 +8,7 @@ redirect_from:
 ---
 
 {% include base_path %}
+(Download my resume [here](https://pcwilcox.github.io/files/resume.pdf)).
 
 Education
 ======
