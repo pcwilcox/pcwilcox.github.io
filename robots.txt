@@ -1,0 +1,2 @@
+User-agent: *
+Sitemap: https://www.pcwilcox.com/sitemap.xml
