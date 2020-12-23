@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="shortcut icon" href="https://www.pcwilcox.com/favicon-32x32.png" />
+<title>Moving to Hugo | Pete Wilcox</title>
+<meta name="title" content="Moving to Hugo" />
+<meta name="description" content="My original Jekyll-based site stopped working for some reason. Rather than try to figure out what was going on with it, I decided to try out some alternative site generators. I&rsquo;d heard about Hugo a bit so I decided to give it a try. The other thing I&rsquo;d been meaning to do is start posting about all the various tech things I&rsquo;ve been working on, as well as interesting talks I&rsquo;ve seen, papers I&rsquo;ve read, and that sort of thing." />
+<meta name="keywords" content="setup,walkthrough,blogging,hugo," />
+
+
+<meta property="og:title" content="Moving to Hugo" />
+<meta property="og:description" content="My original Jekyll-based site stopped working for some reason. Rather than try to figure out what was going on with it, I decided to try out some alternative site generators. I&rsquo;d heard about Hugo a bit so I decided to give it a try. The other thing I&rsquo;d been meaning to do is start posting about all the various tech things I&rsquo;ve been working on, as well as interesting talks I&rsquo;ve seen, papers I&rsquo;ve read, and that sort of thing." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.pcwilcox.com/moving-to-hugo/" />
+<meta property="og:image" content="https://www.pcwilcox.com/images/profile_small.png"/>
+<meta property="article:published_time" content="2020-12-22T23:14:43-08:00" />
+<meta property="article:modified_time" content="2020-12-22T23:14:43-08:00" /><meta property="og:site_name" content="Pete Wilcox" />
+
+
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://www.pcwilcox.com/images/profile_small.png"/>
+
+<meta name="twitter:title" content="Moving to Hugo"/>
+<meta name="twitter:description" content="My original Jekyll-based site stopped working for some reason. Rather than try to figure out what was going on with it, I decided to try out some alternative site generators. I&rsquo;d heard about Hugo a bit so I decided to give it a try. The other thing I&rsquo;d been meaning to do is start posting about all the various tech things I&rsquo;ve been working on, as well as interesting talks I&rsquo;ve seen, papers I&rsquo;ve read, and that sort of thing."/>
+
+
+
+<meta itemprop="name" content="Moving to Hugo">
+<meta itemprop="description" content="My original Jekyll-based site stopped working for some reason. Rather than try to figure out what was going on with it, I decided to try out some alternative site generators. I&rsquo;d heard about Hugo a bit so I decided to give it a try. The other thing I&rsquo;d been meaning to do is start posting about all the various tech things I&rsquo;ve been working on, as well as interesting talks I&rsquo;ve seen, papers I&rsquo;ve read, and that sort of thing.">
+<meta itemprop="datePublished" content="2020-12-22T23:14:43-08:00" />
+<meta itemprop="dateModified" content="2020-12-22T23:14:43-08:00" />
+<meta itemprop="wordCount" content="1078">
+<meta itemprop="image" content="https://www.pcwilcox.com/images/profile_small.png"/>
+
+
+
+<meta itemprop="keywords" content="setup,walkthrough,blogging,hugo," />
+
+<meta name="referrer" content="no-referrer-when-downgrade" />
+
+  <style>
+  body {
+    font-family: Verdana, sans-serif;
+    margin: auto;
+    padding: 20px;
+    max-width: 720px;
+    text-align: left;
+    background-color: #fff;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    line-height: 1.5;
+    color: #444;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  strong,
+  b {
+    color: #222;
+  }
+
+  a {
+    color: #3273dc;
+     
+  }
+
+  .title {
+    text-decoration: none;
+    border: 0;
+  }
+
+  .title span {
+    font-weight: 400;
+  }
+
+  nav a {
+    margin-right: 10px;
+  }
+
+  textarea {
+    width: 100%;
+    font-size: 16px;
+  }
+
+  input {
+    font-size: 16px;
+  }
+
+  content {
+    line-height: 1.6;
+  }
+
+  table {
+    width: 100%;
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  code {
+    padding: 2px 5px;
+    background-color: #f2f2f2;
+  }
+
+  pre code {
+    color: #222;
+    display: block;
+    padding: 20px;
+    white-space: pre-wrap;
+    font-size: 14px;
+  }
+
+  blockquote {
+    border-left: 1px solid #999;
+    color: #222;
+    padding-left: 20px;
+    font-style: italic;
+  }
+
+  footer {
+    padding: 25px;
+    text-align: center;
+  }
+
+  .helptext {
+    color: #777;
+    font-size: small;
+  }
+
+  .errorlist {
+    color: #eba613;
+    font-size: small;
+  }
+
+   
+  ul.blog-posts {
+    list-style-type: none;
+    padding: unset;
+  }
+
+  ul.blog-posts li {
+    display: flex;
+  }
+
+  ul.blog-posts li span {
+    flex: 0 0 130px;
+  }
+
+  ul.blog-posts li a:visited {
+    color: #8b6fcb;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    body {
+      background-color: #333;
+      color: #ddd;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    strong,
+    b {
+      color: #eee;
+    }
+
+    a {
+      color: #8cc2dd;
+    }
+
+    code {
+      background-color: #777;
+    }
+
+    pre code {
+      color: #ddd;
+    }
+
+    blockquote {
+      color: #ccc;
+    }
+
+    textarea,
+    input {
+      background-color: #252525;
+      color: #ddd;
+    }
+
+    .helptext {
+      color: #aaa;
+    }
+  }
+
+  img[src$='#center']
+{
+    display: block;
+    margin: 0.7rem auto;  
+     
+}
+
+img[src$='#floatleft']
+{
+    float:left;
+    margin: 0.7rem;       
+     
+}
+
+img[src$='#floatright']
+{
+    float:right;
+    margin: 0.7rem;       
+     
+}
+
+</style>
+
+</head>
+
+<body>
+  <header><a href="/" class="title">
+  <h2>Pete Wilcox</h2>
+</a>
+<nav><a href="/">Home</a>
+
+<a href="/cv/">CV</a>
+
+<a href="/other/">Other</a>
+
+<a href="/research/">Research</a>
+
+
+<a href="/blog">Blog</a>
+
+</nav>
+</header>
+  <main>
+
+<h1>Moving to Hugo</h1>
+<p>
+  <i>
+    <time datetime='2020-12-22' pubdate>
+      22 Dec, 2020
+    </time>
+  </i>
+</p>
+
+<content>
+  <p>My original Jekyll-based site stopped working for some reason. Rather than try
+to figure out what was going on with it, I decided to try out some alternative
+site generators. I&rsquo;d heard about <a href="https://gohugo.io">Hugo</a> a bit so I decided to
+give it a try. The other thing I&rsquo;d been meaning to do is start posting about all
+the various tech things I&rsquo;ve been working on, as well as interesting talks I&rsquo;ve
+seen, papers I&rsquo;ve read, and that sort of thing. One of the things people tell
+you as a grad student is to write/post/publish as much as you can, so heck, I&rsquo;ll
+give it a try. One thing I like about this system is that the build tool outputs
+content into a different repo. This makes it easier for me to work with. Here&rsquo;s
+a basic walkthrough of the process to
+setup a similar site:</p>
+<h2 id="install-hugo">Install Hugo</h2>
+<p>I&rsquo;m on a Mac so this is pretty easy using Homebrew:</p>
+<pre><code>$ brew install hugo
+</code></pre><p>Since Hugo is a Go binary you should be able to just download it and run it though.</p>
+<h2 id="create-the-scaffolding-for-your-project">Create the scaffolding for your project</h2>
+<p>Hugo generates most of this stuff for you. I decided to name my project <code>webpage</code>:</p>
+<pre><code>$ hugo new site webpage
+Congratulations! Your new Hugo site is created in /Users/petewilcox/git/webpage.
+
+Just a few more steps and you're ready to go:
+
+1. Download a theme into the same-named folder.
+   Choose a theme from https://themes.gohugo.io/ or
+   create your own with the &quot;hugo new theme &lt;THEMENAME&gt;&quot; command.
+2. Perhaps you want to add some content. You can add single files
+   with &quot;hugo new &lt;SECTIONNAME&gt;/&lt;FILENAME&gt;.&lt;FORMAT&gt;&quot;.
+3. Start the built-in live server via &quot;hugo server&quot;.
+
+Visit https://gohugo.io/ for quickstart guide and full documentation.
+</code></pre><p>Hugo will create the directory structure and some starter files. Next up is to install a theme, I&rsquo;m using <a href="https://github.com/janraasch/hugo-bearblog">Hugo ʕ•ᴥ•ʔ Bear Blog</a> because it&rsquo;s very simple:</p>
+<pre><code>$ cd webpage
+$ git init
+Initialized empty Git repository in /Users/petewilcox/git/webpage/.git/
+$ git submodule add                                 \
+    https://github.com/janraasch/hugo-bearblog.git  \
+    themes/hugo-bearblog
+Cloning into '/Users/petewilcox/git/webpage/themes/hugo-bearblog'...
+remote: Enumerating objects: 6, done.
+remote: Counting objects: 100% (6/6), done.
+remote: Compressing objects: 100% (6/6), done.
+remote: Total 351 (delta 0), reused 1 (delta 0), pack-reused 345
+Receiving objects: 100% (351/351), 196.29 KiB | 2.84 MiB/s, done.
+Resolving deltas: 100% (168/168), done.
+</code></pre><p>So now we&rsquo;ve got the Hugo framework and a theme installed, what next? As the Bear Blog docs say:</p>
+<blockquote>
+<p>If you are starting fresh, simply copy over the contents of the <code>exampleSite</code>-directory included in this theme to your source directory. That should give you a good idea about how things work, and then you can go on from there to make the site your own.</p>
+</blockquote>
+<pre><code>$ cp -r themes/hugo-bearblog/exampleSite/ .
+</code></pre><p>And now we&rsquo;re setup to start configuring out site.</p>
+<h2 id="edit-site-config">Edit site config</h2>
+<p>Earlier we copied over the <code>config.toml</code> from the theme into the root of the repo. Now we&rsquo;ll open that up and set it up
+for our site. I&rsquo;m not sure if this is actually necessary but I edited these:</p>
+<ul>
+<li><code>baseURL</code></li>
+<li><code>title</code></li>
+<li><code>author</code></li>
+<li><code>description</code></li>
+<li><code>favicon</code></li>
+<li><code>images</code></li>
+</ul>
+<p>Note that for the last two, the images should be placed in the <code>static</code> directory.</p>
+<h2 id="configure-image-floats">Configure image floats</h2>
+<p>I wanted to be able to have image floats but didn&rsquo;t want to screw around with HTML too much since I&rsquo;m not a front end
+developer at all. I searched around a bit and found <a href="http://www.ebadf.net/2016/10/19/centering-images-in-hugo/">this blog post</a> which had the CSS code we need:</p>
+<pre><code>img[src$='#center']
+{
+    display: block;
+    margin: 0.7rem auto; /* you can replace the vertical '0.7rem' by
+                            whatever floats your boat, but keep the
+                            horizontal 'auto' for this to work */
+    /* whatever else styles you fancy here */
+}
+
+img[src$='#floatleft']
+{
+    float:left;
+    margin: 0.7rem;      /* this margin is totally up to you */
+    /* whatever else styles you fancy here */
+}
+
+img[src$='#floatright']
+{
+    float:right;
+    margin: 0.7rem;      /* this margin is totally up to you */
+    /* whatever else styles you fancy here */
+}
+</code></pre><p>The file <code>themes/hugo-bearblog/layouts/partials/style.html</code> contains the CSS code used for the site and by just adding
+this in we can then add image floats like this:</p>
+<pre><code>![your_img](/img/your_img.png#center)
+![your_img](/img/your_img.png#floatleft)
+![your_img](/img/your_img.png#floatright)
+</code></pre><h2 id="create-some-content">Create some content</h2>
+<p>At this point we&rsquo;re ready to start writing some pages. For individual pages (like my <a href="research">Research</a> page for
+instance) we can do:</p>
+<pre><code>$ hugo new research.md
+/Users/petewilcox/git/webpage/content/research.md created
+</code></pre><p>For blog posts we&rsquo;ll do:</p>
+<pre><code>$ hugo new blog/somepost.md
+/Users/petewilcox/git/webpage/content/blog/somepost.md created
+</code></pre><p>In either case Hugo will generate some template info:</p>
+<pre><code>---
+title: &quot;Somepost&quot;
+date: 2020-12-23T01:16:31-08:00
+draft: true
+---
+</code></pre><p>The block in between the <code>---</code> delimiters (what Hugo calls <strong>Front Matter</strong>)
+tells Hugo how to place this content, what to name it, that sort of thing.
+<code>draft: true</code> tells Hugo that this page is a draft, so don&rsquo;t publish it in
+production. What we want to do is have our main pages added to the main menu,
+and the rest of it added to blog posts. So our main pages will look like:</p>
+<pre><code>---
+title: &quot;Research&quot;
+date: 2020-12-23T01:16:31-08:00
+menu: &quot;main&quot;
+---
+</code></pre><p>Our blog posts will look like:</p>
+<pre><code>---
+title: &quot;Some Blog Post&quot;
+date: 2020-12-23T01:16:31-08:00
+---
+</code></pre><p>This will put the research page in the main menu (at the top of the site)
+and the blog post will be added to the list automatically generated on the
+blog page.</p>
+<h2 id="add-a-favicon">Add a favicon</h2>
+<p>Take some picture and feed it into a favicon generator (I used
+<a href="https://www.favicon-generator.org/">this one</a>). Put the resulting <code>favicon.ico</code>
+and <code>favicon-32x32.png</code> into the <code>static</code> directory and make sure they match your
+settings in <code>config.toml</code>.</p>
+<h2 id="create-a-project-repo">Create a project repo</h2>
+<p>Go to GitHub and make a new empty repo for your Hugo project. Once it&rsquo;s created,
+copy the repo url and add it to your project:</p>
+<pre><code>$ git remote add origin git@github.com:pcwilcox/webpage.git
+</code></pre><h2 id="setup-deployment">Setup deployment</h2>
+<p>We&rsquo;ll follow the <a href="https://gohugo.io/hosting-and-deployment/hosting-on-github/">Hugo docs</a>
+here and setup a script to deploy the <code>public</code> directory to the GitHub pages
+repo automatically. First, make sure your page is all setup the way you want it:</p>
+<h2 id="host-a-site-on-a-custom-domain">Host a site on a custom domain</h2>
+<p>This part is pretty easy and is done in three steps:</p>
+<ol>
+<li>Get a domain name. I got mine from <a href="https://www.namecheap.com">Namecheap</a> for
+about $12 a year.</li>
+<li>Setup a GitHub repo to host the site. Note that this is different from the
+project repo we set up before. In the settings for the repo, scroll down in
+the <strong>Options</strong> section to <strong>GitHub Pages</strong> to activate web hosting.</li>
+<li>Following the <a href="https://docs.github.com/en/free-pro-team@latest/github/working-with-github-pages/managing-a-custom-domain-for-your-github-pages-site#configuring-a-subdomain">instructions</a>, go to your DNS provider (I use Cloudflare) and create a <code>CNAME</code> record to point to the GitHub page. For mine I created an entry which points <code>www.pcwilcox.com</code> to <code>pcwilcox.github.io</code>.</li>
+</ol>
+
+</content>
+<p>
+  
+  <a href="https://www.pcwilcox.com/blog/setup/">#setup</a>
+  
+  <a href="https://www.pcwilcox.com/blog/walkthrough/">#walkthrough</a>
+  
+  <a href="https://www.pcwilcox.com/blog/blogging/">#blogging</a>
+  
+  <a href="https://www.pcwilcox.com/blog/hugo/">#hugo</a>
+  
+</p>
+
+  </main>
+  <footer>Made with <a href="https://github.com/janraasch/hugo-bearblog/">Hugo ʕ•ᴥ•ʔ Bear</a>
+</footer>
+
+    
+</body>
+
+</html>
