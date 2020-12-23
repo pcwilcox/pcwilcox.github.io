@@ -1,0 +1,7 @@
+baseURL = "https://www.pcwilcox.com/"
+languageCode = "en-us"
+title = "Pete Wilcox"
+
+[module]
+  [[module.imports]]
+    path = "github.com/theNewDynamic/gohugo-theme-ananke"
