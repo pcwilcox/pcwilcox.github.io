@@ -34,7 +34,7 @@
 <meta itemprop="description" content="My original Jekyll-based site stopped working for some reason. Rather than try to figure out what was going on with it, I decided to try out some alternative site generators. I&rsquo;d heard about Hugo a bit so I decided to give it a try. The other thing I&rsquo;d been meaning to do is start posting about all the various tech things I&rsquo;ve been working on, as well as interesting talks I&rsquo;ve seen, papers I&rsquo;ve read, and that sort of thing.">
 <meta itemprop="datePublished" content="2020-12-22T23:14:43-08:00" />
 <meta itemprop="dateModified" content="2020-12-22T23:14:43-08:00" />
-<meta itemprop="wordCount" content="1078">
+<meta itemprop="wordCount" content="1256">
 <meta itemprop="image" content="https://www.pcwilcox.com/images/profile_small.png"/>
 
 
@@ -391,11 +391,7 @@ settings in <code>config.toml</code>.</p>
 <p>Go to GitHub and make a new empty repo for your Hugo project. Once it&rsquo;s created,
 copy the repo url and add it to your project:</p>
 <pre><code>$ git remote add origin git@github.com:pcwilcox/webpage.git
-</code></pre><h2 id="setup-deployment">Setup deployment</h2>
-<p>We&rsquo;ll follow the <a href="https://gohugo.io/hosting-and-deployment/hosting-on-github/">Hugo docs</a>
-here and setup a script to deploy the <code>public</code> directory to the GitHub pages
-repo automatically. First, make sure your page is all setup the way you want it:</p>
-<h2 id="host-a-site-on-a-custom-domain">Host a site on a custom domain</h2>
+</code></pre><h2 id="host-a-site-on-a-custom-domain">Host a site on a custom domain</h2>
 <p>This part is pretty easy and is done in three steps:</p>
 <ol>
 <li>Get a domain name. I got mine from <a href="https://www.namecheap.com">Namecheap</a> for
@@ -405,6 +401,44 @@ project repo we set up before. In the settings for the repo, scroll down in
 the <strong>Options</strong> section to <strong>GitHub Pages</strong> to activate web hosting.</li>
 <li>Following the <a href="https://docs.github.com/en/free-pro-team@latest/github/working-with-github-pages/managing-a-custom-domain-for-your-github-pages-site#configuring-a-subdomain">instructions</a>, go to your DNS provider (I use Cloudflare) and create a <code>CNAME</code> record to point to the GitHub page. For mine I created an entry which points <code>www.pcwilcox.com</code> to <code>pcwilcox.github.io</code>.</li>
 </ol>
+<h2 id="setup-deployment">Setup deployment</h2>
+<p>We&rsquo;ll follow the <a href="https://gohugo.io/hosting-and-deployment/hosting-on-github/">Hugo docs</a>
+here and setup a script to deploy the <code>public</code> directory to the GitHub pages
+repo automatically. First, make sure your page is all setup the way you want it.
+Remove the <code>drafts = true</code> line from the front matter sections. Run <code>hugo</code> once to make sure it builds without errors,
+check the <code>public</code> directory and make sure everything is ok. Once it is, remove the public directory. We&rsquo;ll add the site
+as a submodule:</p>
+<pre><code>$ git submodule add -b main git@github.com:pcwilcox/pcwilcox.github.io public
+</code></pre><p>Next we&rsquo;ll setup the script to automate deployments:</p>
+<pre><code>#!/bin/sh
+
+# If a command fails then the deploy stops
+set -e
+
+printf &quot;\033[0;32mDeploying updates to GitHub...\033[0m\n&quot;
+
+# Build the project.
+hugo # if using a theme, replace with `hugo -t &lt;YOURTHEME&gt;`
+
+# Go To Public folder
+cd public
+
+# Add changes to git.
+git add .
+
+# Commit changes.
+msg=&quot;rebuilding site $(date)&quot;
+if [ -n &quot;$*&quot; ]; then
+	msg=&quot;$*&quot;
+fi
+git commit -m &quot;$msg&quot;
+
+# Push source and build repos.
+git push origin main
+</code></pre><p>Important note here, running <code>deploy.sh</code> updates the public website repo, but not your project repo. You&rsquo;ll need to do
+that separately.</p>
+<h2 id="all-done">All done!</h2>
+<p>And that&rsquo;s it, run the script <code>./deploy.sh &lt;commit message&gt;</code> and it&rsquo;ll build the server and deploy it to GitHub.</p>
 
 </content>
 <p>
